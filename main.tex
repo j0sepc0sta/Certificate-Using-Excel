@@ -1,0 +1,74 @@
+\documentclass[12pt,a4paper,landscape]{report}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{datatool}
+\usepackage[portuges]{babel}
+\usepackage{datatool}
+\UseRawInputEncoding
+\usepackage{ragged2e}
+\usepackage{etoolbox}
+\listfiles
+\usepackage{xparse}
+\usepackage{scalefnt}
+\usepackage{lmodern}
+\usepackage{csvsimple}
+\usepackage{pgf-pie}
+\usepackage[top=4cm,bottom=3cm,left=2cm,right=2cm]{geometry}
+\newcommand*{\AddEverypageHook}[1]{%
+\AddToHook{shipout/background}{\put(1in,-1in){#1}}}
+\newcommand*{\AddThispageHook}[1]{%
+\AddToHookNext{shipout/background}{\put(1in,-1in){#1}}}
+\makeatletter 
+\disable@package@load{everypage}{}
+\makeatother
+\usepackage{everypage}
+\usepackage{newclude}
+\usepackage{afterpage}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usepgfplotslibrary{groupplots}
+\usepgfplotslibrary{dateplot}
+\usepackage{bigfoot}
+\usepackage[pages=all]{background}
+\usepackage{grffile}
+\usepackage{natbib}
+\usepackage{ifthen}
+\usepackage{person}
+\usepackage{ifxetex}
+\DTLsettabseparator
+\DTLmaketabspace
+\DTLsetseparator{,}
+\DTLsetdelimiter{"}
+\nocite{*}
+\DTLloaddb{editors}{editors.csv}
+
+\begin{document}
+    \showboxbreadth\maxdimen
+    \showboxdepth\maxdimen
+    \showoutput
+    \linespread{1.3}\selectfont
+    \pagestyle{empty}
+    \DTLforeach*{editors}
+    {\editor=editor}
+    {
+    \noindent
+    %\BgThispage
+    %\backgroundsetup{scale=1,
+                    angle=0,
+    %contents={\includegraphics[width=\paperwidth,height=\paperheight]{name.png}}}
+    \BgThispage
+    \vfill
+    \begin{center}
+       {\Huge\bf CERTIFICATE}\\
+        \vfill
+    	   \normalfont \LARGE The General Chair certifies that: \\
+            \vfill
+            {\bf \editor}\\
+            \vfill
+            was a member of the Organizing Committee of the 3$^{\text{rd}}$ XXX took place in Portugal from XXX to XXX.
+            \vfill
+    \end{center}
+    \vfill
+    \clearpage
+    \BgThispage
+    }
+\end{document} 
